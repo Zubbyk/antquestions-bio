@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>antquestions?</title>
+    
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="enter-overlay">
+        <button id="enter-btn">*клацни*</button>
+    </div>
+    
+    <canvas id="visualizer-canvas"></canvas>
+
+    <div class="card-container">
+        
+        <div class="banner"></div>
+
+        <img src="https://i.pinimg.com/736x/f9/56/ea/f956ea8196b281a7d9520253f7f71c51.jpg" alt="Главный аватар" class="main-avatar">
+
+        <div class="profile-content">
+            
+            <div class="username">antquestions?</div>
+            <div class="location"><i class="fas fa-map-marker-alt"></i> Bayreuth, Germany</div>
+
+            <div class="social-links">
+                <a href="https://discord.gg/aggh2656sT" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://t.me/antquestions52" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://github.com/Zubbyk" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+
+            <div class="status-card">
+                <img src="https://i.pinimg.com/736x/fa/87/a1/fa87a1e50c272ba9cc8c034dc4f850b3.jpg" alt="Аватар статуса" class="status-pic"> 
+                <div class="user-info">
+                    <div class="name">antkvasens</div>
+                    <div class="status">💜</div>
+                </div>
+                <div class="likes-count"><i class="fas fa-heart"></i>dalbaeb</div>
+            </div>
+
+            <div class="player-controls">
+                <div class="player-buttons">
+                    <i class="fas fa-backward-step" id="prev-btn"></i>
+                    <i class="fas fa-play play-button" id="play-pause-btn"></i>
+                    <i class="fas fa-forward-step" id="next-btn"></i>
+                </div>
+                <div class="progress-bar-container" id="progress-container">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                    <div class="progress-handle" id="progress-handle"></div>
+                </div>
+                <div class="time-and-volume">
+                    <span class="time" id="current-time">00:00</span>
+                    <span class="time-separator">/</span>
+                    <span class="time" id="total-duration">00:00</span>
+                    <div class="volume-control">
+                        <i class="fas fa-volume-high" id="volume-icon"></i>
+                        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="audio-source" src="pros4ay.mp3" crossOrigin="anonymous"></audio>
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
