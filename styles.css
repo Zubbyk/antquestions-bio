@@ -260,7 +260,6 @@ body {
     display: flex; 
     justify-content: space-between;
     border: 1px solid var(--border-color);
-    /* === ИЗМЕНЕНИЯ ЗДЕСЬ: Главный фикс для выравнивания === */
     align-items: center; 
 }
 
@@ -277,11 +276,10 @@ body {
     transition: color 0.3s ease; 
 }
 
-/* === ИЗМЕНЕНИЯ ЗДЕСЬ: Фиксируем ширину кнопки, чтобы не дергалась === */
 .player-buttons i.play-button { 
     font-size: 28px;
-    width: 28px; /* !!! */
-    text-align: center; /* !!! */
+    width: 28px;
+    text-align: center;
 }
 
 .player-buttons i:hover { 
