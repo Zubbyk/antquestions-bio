@@ -283,57 +283,46 @@ body {
         overflow: auto;
         padding: 20px 0;
     }
-
     .card-container {
         width: 95%;
         margin: 20px 0;
     }
-
     .profile-content {
         padding-left: 20px;
         padding-right: 20px;
         padding-bottom: 20px;
     }
-
     .avatar-wrapper {
         width: 140px;
         height: 140px;
     }
-
     .main-avatar {
         width: 130px;
         height: 130px;
     }
-
     .username {
         font-size: 24px;
     }
-    
     .social-links {
         gap: 30px;
     }
-
     .social-links a {
         font-size: 28px;
     }
-
     .player-controls {
         flex-wrap: wrap;
         padding: 15px;
         row-gap: 15px;
     }
-    
     .progress-bar-container {
         width: 100%;
         order: 3;
         margin: 0;
     }
-    
     .player-buttons {
         order: 1;
         padding-right: 0;
     }
-
     .time-and-volume {
         order: 2;
         padding-left: 0;
@@ -344,17 +333,14 @@ body {
         height: 50px;
     }
 }
-
 @media (max-width: 400px) {
     .time-and-volume .time,
     .time-and-volume .time-separator {
         display: none;
     }
-
     .volume-control {
         gap: 5px;
     }
-
     #volume-slider {
         width: 70px;
     }

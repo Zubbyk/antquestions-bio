@@ -213,25 +213,6 @@ function draw() {
     }
 }
 
-// --- КОД ДЛЯ АВАТАРА DISCORD ---
-const DISCORD_USER_ID = "928692326983933962";
-async function fetchDiscordAvatar() {
-    const avatarElement = document.getElementById('discord-avatar');
-    if (!avatarElement) return;
-    try {
-        const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`);
-        if (!response.ok) { console.error("Lanyard API Error."); return; }
-        const { data } = await response.json();
-        if (data && data.discord_user) {
-            const user = data.discord_user;
-            const avatarExtension = user.avatar.startsWith('a_') ? 'gif' : 'png';
-            const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${avatarExtension}?size=256`;
-            avatarElement.src = avatarUrl;
-        }
-    } catch (error) { console.error("Ошибка при загрузке аватара из Discord:", error); }
-}
-fetchDiscordAvatar();
-
 
 // --- КОД ДЛЯ ДОЖДЯ ---
 const rainCanvas = document.getElementById('rain-canvas');
@@ -279,3 +260,23 @@ window.addEventListener('resize', () => {
 });
 createDrops();
 animateRain();
+
+
+// --- КОД ДЛЯ АВАТАРА DISCORD ---
+const DISCORD_USER_ID = "928692326983933962";
+async function fetchDiscordAvatar() {
+    const avatarElement = document.getElementById('discord-avatar');
+    if (!avatarElement) return;
+    try {
+        const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`);
+        if (!response.ok) { console.error("Lanyard API Error."); return; }
+        const { data } = await response.json();
+        if (data && data.discord_user) {
+            const user = data.discord_user;
+            const avatarExtension = user.avatar.startsWith('a_') ? 'gif' : 'png';
+            const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${avatarExtension}?size=256`;
+            avatarElement.src = avatarUrl;
+        }
+    } catch (error) { console.error("Ошибка при загрузке аватара из Discord:", error); }
+}
+fetchDiscordAvatar();
