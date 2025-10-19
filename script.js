@@ -68,7 +68,7 @@ function loadVolume() {
 }
 
 function formatTime(seconds) {
-    if (isNaN(seconds)) return '00:00';
+    if (isNaN(seconds) || seconds === Infinity) return '00:00';
     const minutes = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
@@ -110,7 +110,7 @@ function setProgress(e) {
     }
 }
 
-audio.addEventListener('loadedmetadata', () => {
+audio.addEventListener('durationchange', () => {
     totalDurationEl.textContent = formatTime(audio.duration);
 });
 
@@ -150,9 +150,7 @@ audio.addEventListener('ended', () => {
 loadVolume();
 
 
-// =========================================================================
-// =================== КОД ДЛЯ ВИЗУАЛАЙЗЕРА ================================
-// =========================================================================
+// --- КОД ДЛЯ ВИЗУАЛАЙЗЕРА ---
 const canvas = document.getElementById('visualizer-canvas');
 const ctx = canvas.getContext('2d');
 let dataArray;
@@ -214,3 +212,70 @@ function draw() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 }
+
+// --- КОД ДЛЯ АВАТАРА DISCORD ---
+const DISCORD_USER_ID = "928692326983933962";
+async function fetchDiscordAvatar() {
+    const avatarElement = document.getElementById('discord-avatar');
+    if (!avatarElement) return;
+    try {
+        const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`);
+        if (!response.ok) { console.error("Lanyard API Error."); return; }
+        const { data } = await response.json();
+        if (data && data.discord_user) {
+            const user = data.discord_user;
+            const avatarExtension = user.avatar.startsWith('a_') ? 'gif' : 'png';
+            const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${avatarExtension}?size=256`;
+            avatarElement.src = avatarUrl;
+        }
+    } catch (error) { console.error("Ошибка при загрузке аватара из Discord:", error); }
+}
+fetchDiscordAvatar();
+
+
+// --- КОД ДЛЯ ДОЖДЯ ---
+const rainCanvas = document.getElementById('rain-canvas');
+const rainCtx = rainCanvas.getContext('2d');
+rainCanvas.width = window.innerWidth;
+rainCanvas.height = window.innerHeight;
+let drops = [];
+function createDrop() {
+    return {
+        x: Math.random() * rainCanvas.width,
+        y: Math.random() * rainCanvas.height - rainCanvas.height,
+        length: Math.random() * 20 + 10,
+        speed: Math.random() * 5 + 2,
+        opacity: Math.random() * 0.5 + 0.2
+    };
+}
+function createDrops() { for (let i = 0; i < 200; i++) { drops.push(createDrop()); } }
+function drawRain() {
+    rainCtx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+    drops.forEach(drop => {
+        rainCtx.beginPath();
+        rainCtx.moveTo(drop.x, drop.y);
+        rainCtx.lineTo(drop.x, drop.y + drop.length);
+        rainCtx.strokeStyle = `rgba(118, 232, 245, ${drop.opacity})`;
+        rainCtx.lineWidth = 1;
+        rainCtx.stroke();
+    });
+    updateRain();
+}
+function updateRain() {
+    drops.forEach(drop => {
+        drop.y += drop.speed;
+        if (drop.y > rainCanvas.height) {
+            drop.y = 0 - drop.length;
+            drop.x = Math.random() * rainCanvas.width;
+        }
+    });
+}
+function animateRain() { drawRain(); requestAnimationFrame(animateRain); }
+window.addEventListener('resize', () => {
+    rainCanvas.width = window.innerWidth;
+    rainCanvas.height = window.innerHeight;
+    drops = [];
+    createDrops();
+});
+createDrops();
+animateRain();
