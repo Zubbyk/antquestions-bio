@@ -340,9 +340,8 @@ body {
     font-size: 18px; 
     cursor: pointer; 
     transition: color 0.3s ease;
-    /* === ИЗМЕНЕНИЯ ЗДЕСЬ === */
-    width: 22px; /* Задаем фиксированную ширину */
-    text-align: center; /* Центрируем иконку внутри этой области */
+    width: 22px; 
+    text-align: center; 
 }
 
 .volume-control i:hover { 
@@ -378,6 +377,10 @@ body {
     border-radius: 50%; 
 }
 
+/* ========================================================================= */
+/* =================== АДАПТИВНОСТЬ (ДЛЯ ТЕЛЕФОНОВ) ======================= */
+/* ========================================================================= */
+
 @media (max-width: 850px) {
     body {
         overflow: auto;
@@ -409,25 +412,37 @@ body {
     .social-links a {
         font-size: 28px;
     }
+    
+    /* === ИЗМЕНЕНИЯ ЗДЕСЬ: Новый макет для плеера на мобилке === */
     .player-controls {
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* Разрешаем перенос */
+        justify-content: center; /* Центрируем все по горизонтали */
         padding: 15px;
-        row-gap: 15px;
-    }
-    .progress-bar-container {
-        width: 100%;
-        order: 3;
-        margin: 0;
+        row-gap: 15px; /* Вертикальный отступ между строками */
     }
     .player-buttons {
-        order: 1;
+        order: 1; /* Кнопки Play/Pause/Next/Prev - первая строка */
+        width: 100%;
+        justify-content: center; /* Центрируем кнопки */
         padding-right: 0;
+        gap: 35px; /* Увеличим расстояние между кнопками */
+    }
+    .progress-bar-container {
+        order: 2; /* Полоса прогресса - вторая строка */
+        width: 100%;
+        margin: 0;
     }
     .time-and-volume {
-        order: 2;
+        order: 3; /* Время и громкость - третья строка */
+        width: 100%;
+        justify-content: space-between; /* Распределяем по краям */
         padding-left: 0;
-        margin-left: auto;
     }
+    .volume-control {
+       margin-left: auto; /* Прижимаем громкость вправо */
+    }
+    /* === КОНЕЦ ИЗМЕНЕНИЙ === */
+
     .gothic-cross {
         width: 50px;
         height: 50px;
@@ -435,10 +450,7 @@ body {
 }
 
 @media (max-width: 400px) {
-    .time-and-volume .time,
-    .time-and-volume .time-separator {
-        display: none;
-    }
+    /* На очень маленьких экранах время скрывать не будем, места теперь хватает */
     .volume-control {
         gap: 5px;
     }
