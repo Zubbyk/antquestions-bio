@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('./1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --background-color: #000000;
     --container-bg: #0a0a0a;
@@ -13,7 +20,7 @@
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'MyCustomFont', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +59,8 @@ body {
 
 #enter-btn {
     background: none; border: none; padding: 20px;
-    font-family: 'Roboto', sans-serif; font-size: 18px;
+    font-family: 'MyCustomFont', sans-serif;
+    font-size: 18px;
     color: var(--secondary-text-color);
     pointer-events: none;
     transition: all 0.3s;
@@ -63,40 +71,6 @@ body {
     text-shadow: 0 0 10px rgba(118, 232, 245, 0.5);
 }
 
-.gothic-cross {
-    position: fixed;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>');
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 80px;
-    height: 80px;
-    opacity: 0;
-    z-index: -2;
-    animation: fade-in-out 15s infinite ease-in-out forwards, 
-               move-and-rotate 15s infinite linear forwards;
-}
-
-.cross-1 { top: 10%; left: 15%; animation-delay: 0s, 0s; }
-.cross-2 { top: 70%; left: 80%; animation-delay: 3s, 3s; width: 60px; height: 60px; transform: scale(0.8); }
-.cross-3 { top: 40%; left: 50%; animation-delay: 6s, 6s; transform: scale(1.1); }
-.cross-4 { top: 20%; left: 60%; animation-delay: 9s, 9s; width: 90px; height: 90px; transform: scale(1.2); }
-.cross-5 { top: 85%; left: 30%; animation-delay: 12s, 12s; width: 70px; height: 70px; transform: scale(0.9); }
-
-@keyframes fade-in-out {
-    0% { opacity: 0; }
-    20% { opacity: 0.1; }
-    80% { opacity: 0.1; }
-    100% { opacity: 0; }
-}
-
-@keyframes move-and-rotate {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(10vw, 5vh) rotate(45deg); }
-    50% { transform: translate(0, 10vh) rotate(90deg); }
-    75% { transform: translate(-10vw, 5vh) rotate(135deg); }
-    100% { transform: translate(0, 0) rotate(180deg); }
-}
-
 .card-container {
     width: 800px;
     background-color: var(--container-bg);
@@ -104,9 +78,13 @@ body {
     border: 1px solid var(--border-color);
     box-shadow: 0 0 25px 5px rgba(118, 232, 245, 0.15);
     animation: pulse-glow 3s infinite alternate;
-    transition: transform 0.1s linear;
-    transform-style: preserve-3d;
     position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease-out;
+}
+
+.card-container:hover {
+    box-shadow: 0 0 40px 10px rgba(118, 232, 245, 0.25);
 }
 
 .banner {
@@ -115,7 +93,35 @@ body {
     background-size: cover;
     background-position: center;
     border-radius: 15px 15px 0 0;
+    position: relative;
 }
+
+.header-info {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+}
+
+.id-tag {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 14px;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.id-tag i {
+    margin-right: 6px;
+    color: var(--accent-color);
+}
+
 
 @keyframes pulse-glow {
     from { box-shadow: 0 0 25px 5px rgba(118, 232, 245, 0.10); }
@@ -174,7 +180,7 @@ body {
     z-index: 2;
 }
 
-.username { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.username { font-size: 28px; font-weight: normal; margin-bottom: 8px; }
 
 .location { color: var(--secondary-text-color); font-size: 15px; margin-bottom: 30px; }
 .location i { margin-right: 5px; }
@@ -230,7 +236,7 @@ body {
 }
 
 .song-title { 
-    font-weight: 700; 
+    font-weight: normal; 
     font-size: 16px;
     color: var(--text-color);
 }
@@ -250,7 +256,6 @@ body {
     color: #1ed760;
     transform: scale(1.2) rotate(10deg);
 }
-
 
 .player-controls {
     background-color: var(--player-bg); 
@@ -377,9 +382,44 @@ body {
     border-radius: 50%; 
 }
 
-/* ========================================================================= */
-/* =================== АДАПТИВНОСТЬ (ДЛЯ ТЕЛЕФОНОВ) ======================= */
-/* ========================================================================= */
+/* === ИЗМЕНЕНИЯ ЗДЕСЬ: Возвращены стили для нижнего баннера с новым эффектом === */
+.footer-tag {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 50;
+    transition: all 0.3s ease;
+}
+
+.footer-tag:hover {
+    background-color: rgba(20, 20, 20, 0.6);
+    color: var(--text-color);
+    box-shadow: 0 0 15px rgba(118, 232, 245, 0.2);
+    transform: scale(1.05); /* Увеличиваем плашку */
+}
+
+.footer-icon {
+    font-size: 20px;
+    color: var(--accent-color);
+    margin-right: 8px;
+    line-height: 1;
+    display: inline-block;
+    transition: transform 0.4s ease; /* Плавный переход для вращения */
+}
+
+.footer-tag:hover .footer-icon {
+    transform: rotateX(180deg); /* Переворачиваем иконку по вертикали */
+}
+
 
 @media (max-width: 850px) {
     body {
@@ -412,45 +452,58 @@ body {
     .social-links a {
         font-size: 28px;
     }
-    
-    /* === ИЗМЕНЕНИЯ ЗДЕСЬ: Новый макет для плеера на мобилке === */
     .player-controls {
-        flex-wrap: wrap; /* Разрешаем перенос */
-        justify-content: center; /* Центрируем все по горизонтали */
+        flex-wrap: wrap; 
+        justify-content: center; 
         padding: 15px;
-        row-gap: 15px; /* Вертикальный отступ между строками */
+        row-gap: 15px; 
     }
     .player-buttons {
-        order: 1; /* Кнопки Play/Pause/Next/Prev - первая строка */
+        order: 1; 
         width: 100%;
-        justify-content: center; /* Центрируем кнопки */
+        justify-content: center; 
         padding-right: 0;
-        gap: 35px; /* Увеличим расстояние между кнопками */
+        gap: 35px; 
     }
     .progress-bar-container {
-        order: 2; /* Полоса прогресса - вторая строка */
+        order: 2; 
         width: 100%;
         margin: 0;
     }
     .time-and-volume {
-        order: 3; /* Время и громкость - третья строка */
+        order: 3; 
         width: 100%;
-        justify-content: space-between; /* Распределяем по краям */
+        justify-content: space-between; 
         padding-left: 0;
     }
     .volume-control {
-       margin-left: auto; /* Прижимаем громкость вправо */
+       margin-left: auto; 
     }
-    /* === КОНЕЦ ИЗМЕНЕНИЙ === */
-
-    .gothic-cross {
-        width: 50px;
-        height: 50px;
+    .header-info {
+        top: 10px;
+        right: 10px;
+        gap: 5px;
+    }
+    .id-tag {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
+    .id-tag i {
+        margin-right: 4px;
+    }
+    .footer-tag {
+        bottom: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    .footer-icon {
+        font-size: 16px;
+        margin-right: 6px;
     }
 }
 
 @media (max-width: 400px) {
-    /* На очень маленьких экранах время скрывать не будем, места теперь хватает */
     .volume-control {
         gap: 5px;
     }

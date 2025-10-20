@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="./styles.css"> 
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -19,18 +16,17 @@
     </div>
     
     <canvas id="rain-canvas"></canvas>
-
-    <div class="gothic-cross cross-1"></div>
-    <div class="gothic-cross cross-2"></div>
-    <div class="gothic-cross cross-3"></div>
-    <div class="gothic-cross cross-4"></div>
-    <div class="gothic-cross cross-5"></div>
-    
     <canvas id="visualizer-canvas"></canvas>
 
     <div class="card-container">
         
-        <div class="banner"></div>
+        <div class="banner">
+             <div class="header-info">
+                <div class="id-tag">
+                    <i class="fas fa-hashtag"></i> 1
+                </div>
+            </div>
+        </div>
 
         <div class="avatar-wrapper">
             <img src="" alt="Главный аватар" class="main-avatar" id="discord-avatar">
@@ -40,7 +36,7 @@
         <div class="profile-content">
             
             <div class="username">antquestions?</div>
-            <div class="location"><i class="fas fa-map-marker-alt"></i> Bayreuth, Germany</div>
+            <div class="location"><i class="fas fa="map-marker-alt"></i> Bayreuth, Germany</div>
 
             <div class="social-links">
                 <a href="https://discord.gg/aggh2656sT" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
@@ -49,12 +45,12 @@
             </div>
 
             <div class="song-card">
-                <img src="https://i1.sndcdn.com/artworks-VpquKGcDLCSw8hP1-EH67yg-t500x500.jpg" alt="Обложка трека" class="song-cover"> 
+                <img src="https://i.scdn.co/image/ab67616d0000b27372148e229e55ab615372efc4" alt="Обложка трека" class="song-cover"> 
                 <div class="song-info">
-                    <div class="song-title">прощай</div>
-                    <div class="song-artist">5mewmet</div>
+                    <div class="song-title">страхи</div>
+                    <div class="song-artist">elox1m, FORTUNA 812</div>
                 </div>
-                <a href="https://open.spotify.com/track/3fp7JJM1rKjJba5ZzdSHk6?si=551143315a00426b" target="_blank" title="Слушать на Spotify">
+                <a href="https://open.spotify.com/track/3R1tutqYO8YmxjlkFG9f5S?si=a0b9dd7beef341fd" target="_blank" title="Слушать на Spotify">
                     <i class="fab fa-spotify"></i>
                 </a>
             </div>
@@ -82,7 +78,11 @@
         </div>
     </div>
     
-    <audio id="audio-source" src="pros4ay.mp3" crossOrigin="anonymous"></audio>
+    <audio id="audio-source" src="strahi.mp3" crossOrigin="anonymous"></audio>
+
+    <div class="footer-tag">
+        <span class="footer-icon">𐕣</span> Made by antquestions?
+    </div>
 
     <script src="./script.js" defer></script>
 

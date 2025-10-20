@@ -28,20 +28,21 @@ enterOverlay.addEventListener('click', () => {
 const card = document.querySelector('.card-container');
 if (card) {
     card.addEventListener('mousemove', (e) => {
+        card.style.transition = 'transform 0.05s linear';
         const { left, top, width, height } = card.getBoundingClientRect();
         const x = e.clientX - left; const y = e.clientY - top;
         const centerX = width / 2; const centerY = height / 2;
         const deltaX = x - centerX; const deltaY = y - centerY;
         const rotateIntensity = 0.04;
-        const rotateX = -deltaY * rotateIntensity; const rotateY = deltaX * rotateIntensity;
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        const rotateX = -deltaY * rotateIntensity;
+        const rotateY = deltaX * rotateIntensity;
+        
+        card.style.transform = `scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
+
     card.addEventListener('mouseleave', () => {
         card.style.transition = 'transform 0.5s ease-in-out';
-        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-    });
-    card.addEventListener('mouseenter', () => {
-        card.style.transition = 'transform 0.1s linear';
+        card.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
     });
 }
 
